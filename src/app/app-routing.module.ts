@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -7,7 +8,8 @@ const routes: Routes = [
     pathMatch: "full",
     loadChildren: "./home/home.module#HomeModule"
   },
-  { path: "people", loadChildren: "./people/people.module#PeopleModule" }
+  { path: "people", loadChildren: "./people/people.module#PeopleModule" },
+  { path: "about", component:AboutComponent}
 ];
 
 @NgModule({
