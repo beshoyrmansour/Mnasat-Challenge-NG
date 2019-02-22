@@ -13,9 +13,10 @@ import {
   MatListModule
 } from "@angular/material";
 import { MatCardModule } from "@angular/material/card";
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,7 +26,8 @@ import { MatCardModule } from "@angular/material/card";
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
