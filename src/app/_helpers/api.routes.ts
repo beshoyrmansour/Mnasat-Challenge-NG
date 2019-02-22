@@ -6,5 +6,6 @@ export const API_ROUTES = {
   },
   people: {
     POPULAR: "person/popular?page={PAGE_NUMBER}"
-  }
+  },
+  COMMON: { IMAGE_PATH: "https://image.tmdb.org/t/p/w500" }
 };

@@ -1,4 +1,27 @@
-<p>
-  home works!
-</p>
-<pre>{{ moviesList  | json }}</pre>
+
+<div class="card-columns">
+  <ng-container *ngIf="moviesList.length <= 0; else moviesListHasData">
+    <h1 class="text-muted">Loading Movie Data..</h1>
+    <app-list-placeholder [length]="4"></app-list-placeholder>
+  </ng-container>
+  <ng-template #moviesListHasData>
+    <mat-card class="mb-3 card" *ngFor="let movie of moviesList">
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.popularity }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="getMoviePoster(movie.poster_path)" alt="Photo of a Shiba Inu" />
+      <mat-card-content>
+        <p>
+          {{ movie.overview }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="getMoviePoster(movie.poster_path)">
+          LIKE
+        </button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+</div>

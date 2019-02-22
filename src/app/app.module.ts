@@ -12,13 +12,13 @@ import {
   MatIconModule,
   MatListModule
 } from "@angular/material";
-import { NavbarComponent } from "./navbar/navbar.component";
 import { AboutComponent } from "./about/about.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./_helpers/auth.interceptor";
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, AboutComponent],
+  declarations: [AppComponent, AboutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +29,8 @@ import { AuthInterceptor } from "./_helpers/auth.interceptor";
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
