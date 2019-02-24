@@ -1,27 +1,43 @@
-
-<div class="card-columns">
+<div class="card-groupaa">
   <ng-container *ngIf="moviesList.length <= 0; else moviesListHasData">
     <h1 class="text-muted">Loading Movie Data..</h1>
     <app-list-placeholder [length]="4"></app-list-placeholder>
   </ng-container>
   <ng-template #moviesListHasData>
-    <mat-card class="mb-3 card" *ngFor="let movie of moviesList">
-      <mat-card-header>
-        <mat-card-title>{{ movie.title }}</mat-card-title>
-        <mat-card-subtitle>{{ movie.popularity }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="getMoviePoster(movie.poster_path)" alt="Photo of a Shiba Inu" />
-      <mat-card-content>
-        <p>
-          {{ movie.overview }}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="getMoviePoster(movie.poster_path)">
-          LIKE
-        </button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
+    <!-- <cdk-virtual-scroll-viewport itemSize="850" style="height:500px"> -->
+    <!-- <mat-card class="mb-3 card" *cdkVirtualFor="let movie of moviesList"> -->
+    <div class="row">
+      <mat-card class="mb-3 card col-4 py-2" *ngFor="let movie of moviesList">
+        <mat-card-header>
+          <mat-card-title>{{ movie.title }}</mat-card-title>
+          <mat-card-subtitle>{{ movie.popularity }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="getMoviePoster(movie.poster_path)"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <p>
+            {{ movie.overview }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="getMoviePoster(movie.poster_path)">
+            LIKE
+          </button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+      <button mat-button (click)="getMovies(moviesPageNumber + 1)">Load More</button>
+    </div>
+    <!-- </cdk-virtual-scroll-viewport> -->
   </ng-template>
+</div>
+<div *ngIf="!finished">
+  Loading more movies...
+</div>
+
+<div *ngIf="finished">
+  End of database... That's all folks!
 </div>

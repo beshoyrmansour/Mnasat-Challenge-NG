@@ -14,6 +14,20 @@ export class HomeComponent implements OnInit {
   moviesList: Array<Movie>;
   ngOnInit() {
     this.moviesList = new Array<Movie>();
+    this.getMovies();
+  }
+
+  getMoviePoster(posterPath) {
+    return API_ROUTES.COMMON.IMAGE_PATH + posterPath;
+  }
+
+  getMovies(PageNumber?) {
+    console.log('PageNumber', PageNumber);
+    
+    if (PageNumber) this.moviesPageNumber = PageNumber;
+
+    console.log('moviesPageNumber', this.moviesPageNumber);
+
     this.moviesService
       .getPopularMovies(this.moviesPageNumber)
       .subscribe(moviesList => {
@@ -22,9 +36,5 @@ export class HomeComponent implements OnInit {
         });
         console.log("moviesList", moviesList);
       });
-  }
-
-  getMoviePoster(posterPath) {
-    return API_ROUTES.COMMON.IMAGE_PATH + posterPath;
   }
 }
