@@ -1,135 +1,37 @@
-<div class="card-columns">
-        <mat-card class="mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card class="mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card class="mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card class="mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting. The Shiba Inu is the smallest of the six original and
-              distinct spitz breeds of dog from Japan. A small, agile dog that
-              copes very well with mountainous terrain, the Shiba Inu was
-              originally bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card class="mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
+<ng-container *ngIf="peopleList.length <= 0; else peopleListHasData">
+  <h1 class="text-muted">Loading People Data..</h1>
+  <app-list-placeholder [length]="4"></app-list-placeholder>
+</ng-container>
+<ng-template #peopleListHasData>
+  <div class="">
+    <div class="row justify-content-around align-content-start">
+      <mat-card class="my-4 mx-1 card col-xs-12 col-sm-3 col-xl-3 py-2" *ngFor="let person of peopleList">
+        <mat-card-header>
+          <mat-card-title>{{ person.name }}
+            <!-- <span class="badge"
+              [ngClass]=" person.popularity> 7 ? 'badge-success':'badge-warning'">{{ person.popularity }} </span> -->
+          </mat-card-title>
+          <mat-card-subtitle>
+            <!-- <h5>
+              </h5> -->
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="getPersonProfilePhoto(person.profile_path)" [alt]="'Photo of' + person.name" />
+        <mat-card-content>
+          <p class="">
+            {{ person.overview }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="text-center">
+          <button mat-button (click)="goToPersonProfile(person.id)">
+            More Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <button mat-button (click)="getPeople(people.PageNumber + 1)">Load More</button>
+    </div>
+  </div>
+</ng-template>
+<div *ngIf="!finished">
+  Loading more people...
+</div>
