@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { MoviesService } from "../_services/movies.service";
 import { Movie } from "../_models/movie.model";
 import { API_ROUTES } from "../_helpers/api.routes";
@@ -8,13 +8,22 @@ import { API_ROUTES } from "../_helpers/api.routes";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService) { }
   moviesPageNumber = 1;
   imgPath = "";
   moviesList: Array<Movie>;
+  finished: Boolean;
   ngOnInit() {
     this.moviesList = new Array<Movie>();
     this.getMovies();
+  }
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      // Load Your Data Here
+      this.getMovies(this.moviesPageNumber + 1)
+      // alert('onScroll Fired')
+    }
   }
 
   getMoviePoster(posterPath) {
@@ -22,19 +31,18 @@ export class HomeComponent implements OnInit {
   }
 
   getMovies(PageNumber?) {
-    console.log('PageNumber', PageNumber);
-    
+    console.log('moviesList', this.moviesList);
+
     if (PageNumber) this.moviesPageNumber = PageNumber;
 
-    console.log('moviesPageNumber', this.moviesPageNumber);
-
+    this.finished = false;
     this.moviesService
       .getPopularMovies(this.moviesPageNumber)
       .subscribe(moviesList => {
         moviesList.forEach((movie: Movie) => {
           this.moviesList.push(movie);
         });
-        console.log("moviesList", moviesList);
+        this.finished = true
       });
   }
 }

@@ -1,43 +1,37 @@
-<div class="card-groupaa">
-  <ng-container *ngIf="moviesList.length <= 0; else moviesListHasData">
-    <h1 class="text-muted">Loading Movie Data..</h1>
-    <app-list-placeholder [length]="4"></app-list-placeholder>
-  </ng-container>
-  <ng-template #moviesListHasData>
-    <!-- <cdk-virtual-scroll-viewport itemSize="850" style="height:500px"> -->
-    <!-- <mat-card class="mb-3 card" *cdkVirtualFor="let movie of moviesList"> -->
-    <div class="row">
-      <mat-card class="mb-3 card col-4 py-2" *ngFor="let movie of moviesList">
+<ng-container *ngIf="moviesList.length <= 0; else moviesListHasData">
+  <h1 class="text-muted">Loading Movie Data..</h1>
+  <app-list-placeholder [length]="4"></app-list-placeholder>
+</ng-container>
+<ng-template #moviesListHasData>
+  <div class="">
+    <div class="row justify-content-around align-content-start">
+      <mat-card class="my-4 mx-1 card col-xs-12 col-sm-5 col-xl-3 py-2" *ngFor="let movie of moviesList">
         <mat-card-header>
-          <mat-card-title>{{ movie.title }}</mat-card-title>
-          <mat-card-subtitle>{{ movie.popularity }}</mat-card-subtitle>
+          <mat-card-title>{{ movie.title }}
+            <span class="badge " [ngClass]=" movie.vote_average> 7 ? 'badge-success':'badge-warning'">{{ movie.vote_average }} </span>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <!-- <h5>
+            </h5> -->
+          </mat-card-subtitle>
         </mat-card-header>
-        <img
-          mat-card-image
-          [src]="getMoviePoster(movie.poster_path)"
-          alt="Photo of a Shiba Inu"
-        />
+        <img mat-card-image [src]="getMoviePoster(movie.poster_path)" alt="Photo of a Shiba Inu" />
         <mat-card-content>
-          <p>
+          <p class="">
             {{ movie.overview }}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="getMoviePoster(movie.poster_path)">
-            LIKE
+          <button mat-button>
+            Movie Details
           </button>
-          <button mat-button>SHARE</button>
+          <button mat-button>Add to favorites</button>
         </mat-card-actions>
       </mat-card>
       <button mat-button (click)="getMovies(moviesPageNumber + 1)">Load More</button>
     </div>
-    <!-- </cdk-virtual-scroll-viewport> -->
-  </ng-template>
-</div>
+  </div>
+</ng-template>
 <div *ngIf="!finished">
   Loading more movies...
-</div>
-
-<div *ngIf="finished">
-  End of database... That's all folks!
 </div>
